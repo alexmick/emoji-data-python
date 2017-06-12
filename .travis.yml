@@ -3,5 +3,11 @@ language: python
 python:
   - "3.6"
 
+install:
+  - pip install python-coveralls nose coverage
+
 script:
-  - python -m unittest discover
+  - nosetests --with-coverage
+
+after_success:
+  - coveralls
