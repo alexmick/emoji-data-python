@@ -74,3 +74,9 @@ class EmojiCharTestCase(unittest.TestCase):
     def test_doublebyte(self):
         self.assertEqual(False, self.emoji.is_doublebyte)
 
+    def test_str(self):
+        self.assertEqual('WHITE UP POINTING INDEX', self.emoji.__str__())
+
+    def test_repr(self):
+        self.assertEqual('EmojiChar("WHITE UP POINTING INDEX")', self.emoji.__repr__())
+
