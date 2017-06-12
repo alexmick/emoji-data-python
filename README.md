@@ -1,5 +1,9 @@
 # emoji_data_python - A python emoji toolkit
 
+[![Build Status](https://travis-ci.org/alexmick/emoji-data-python.svg?branch=master)](https://travis-ci.org/alexmick/emoji-data-python)
+[![Documentation Status](https://readthedocs.org/projects/emoji-data-python/badge/?version=latest)](http://emoji-data-python.readthedocs.io/en/latest/?badge=latest)
+
+
 Forget about handling obscure shortcodes from slack or user input, this lib knows all about them !
 
 ### Features
