@@ -78,3 +78,5 @@ pip install emoji_data_python
 ```bash
 python -m unittest discover
 ```
+
+###### Thanks to [iamcal](https://github.com/iamcal/emoji-data) for the complete emoji data. This project is merely a python wrapper for his work.
