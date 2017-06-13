@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - "3.6"
+  - '3.6'
 
 install:
   - pip install python-coveralls nose coverage
@@ -11,3 +11,9 @@ script:
 
 after_success:
   - coveralls
+
+deploy:
+  provider: pypi
+  user: alexmick
+  password:
+    secure: IPuB9/1RGJVURyFRlkcK3bCtiAmKiyO9v/i+wkzHZhIuBcSnoXCGjZn70CT3U64dJUt53ckVgBSWPw5gjIrQ5vAsXAc23z1YfxDFbHidlvv1TVoxClcS+szBfpuVHaiVqjG9vFwMGWrof3zxv+4l608r6wuhNoKs0RUIEZ57s9/nJTGJt4LMzR1UJLEI88e1Qfm9E8Oi9IAVXol7ePzl+dPHltOH5gYGCA7wJz1u4FTRxJxmS2y3jS4JoAVT6Y2vGWs01wgw4HKHFLg/CXDLpQP/r55txnGKEHjC40dSwjxRfCFSa2DEKxm1dhcHaWt1dSA66E2wySiGAMQNnvWY2cQP92YlKaUHX6Ryo602nLXZdqFaj8s8hZTFBZ5+3anP2qWSOmOSFSZdsvQmLRq5Bt/YLjBLQTa7AG2ggc0MHMHCslgD/nsYcyG3TsJX9tx1lSG7NUAdErFIsm7xIQ1XBZGmHJsNtOB52Zm5ZZWYBYQRzbbbbdKUPSw8SCbJLxJ04BoKWcz2j7gxQHgBsBcj0WfyDdCHzCYE0I4X5ECrIcSZ5a7rvZhSFHI+fpNhz8vm773w3dMAAZXNsO5CLcrk+7H7eM6KW0tcvieV+zry7t0E07bWtwqHdwK5HK2Q2XbXhOErIVetL6PbBYYzgb4hEQP44yuzZIRGaLtXZ8GCEms=
