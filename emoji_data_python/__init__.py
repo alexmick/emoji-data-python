@@ -24,4 +24,4 @@ with open(path.join(path.dirname(__file__), 'data/emoji.json'), 'r') as full_dat
                 emoji_short_names[short_name] = emoji
 
 
-__all__ = ['unified_to_char', 'EmojiChar', 'replace_colons', 'all_doublebyte', 'find_by_shortname', 'find_by_name']
+__all__ = ['unified_to_char', 'EmojiChar', 'replace_colons', 'all_doublebyte', 'find_by_shortname', 'find_by_name', 'emoji_data', 'emoji_short_names']
