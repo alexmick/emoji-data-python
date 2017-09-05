@@ -20,6 +20,9 @@ class EmojiChar:
             'au': 'EAA5',
             'softbank': 'E20C',
             'google': 'FEB1A',
+            'image': '2665.png',
+            'sheet_x': 1,
+            'sheet_y': 34,
             'short_name': 'hearts',
             'short_names': ['hearts'],
             'text': None,
@@ -27,6 +30,12 @@ class EmojiChar:
             'category': 'Symbols',
             'sort_order': 245,
             'added_in': '1.1',
+            'has_img_apple': True,
+            'has_img_google': True,
+            'has_img_twitter': True,
+            'has_img_emojione': True,
+            'has_img_facebook': True,
+            'has_img_messenger': True,
             'skin_variations': {},
             'obsoletes': None,
             'obsoleted_by': None
@@ -40,16 +49,25 @@ class EmojiChar:
         self.au = data_blob.get('au')  # type: Optional[str]
         self.softbank = data_blob.get('softbank')  # type: Optional[str]
         self.google = data_blob.get('google')  # type: Optional[str]
+        self.image = data_blob.get('image')  # type: Optional[str]
+        self.sheet_x = data_blob.get('sheet_x')  # type: int
+        self.sheet_y = data_blob.get('sheet_y')  # type: int
 
         self.short_name = data_blob.get('short_name')  # type: Optional[str]
         self.short_names = data_blob.get('short_names')  # type: List[str]
-        self.text = data_blob.get('text')  # type: Optional[str]
         self.text = data_blob.get('text')  # type: Optional[str]
         self.texts = data_blob.get('texts')  # type: List[str]
 
         self.category = data_blob.get('category')  # type: Optional[str]
         self.sort_order = data_blob.get('sort_order')  # type: int
         self.added_in = data_blob.get('added_in')  # type: str
+
+        self.has_img_apple = data_blob.get('has_img_apple') # type: bool
+        self.has_img_google = data_blob.get('has_img_google') # type: bool
+        self.has_img_twitter = data_blob.get('has_img_twitter') # type: bool
+        self.has_img_emojione = data_blob.get('has_img_emojione') # type: bool
+        self.has_img_facebook = data_blob.get('has_img_facebook') # type: bool
+        self.has_img_messenger = data_blob.get('has_img_messenger') # type: bool
 
         variations = data_blob.get('skin_variations', {})
         self.skin_variations = {

@@ -57,9 +57,14 @@ class EmojiCharTestCase(unittest.TestCase):
         self.assertEqual("point_up", self.emoji.short_names[0])
         self.assertEqual("People", self.emoji.category)
         self.assertEqual("1.4", self.emoji.added_in)
+        self.assertEqual("261d.png", self.emoji.image)
+        self.assertEqual(1, self.emoji.sheet_x)
+        self.assertEqual(True, self.emoji.has_img_apple)
+        self.assertEqual(False, self.emoji.has_img_emojione)
 
     def test_skin_variations(self):
         self.assertEqual("261D-1F3FB", self.emoji.skin_variations['1F3FB'].unified)
+        self.assertEqual(True, self.emoji.skin_variations['1F3FB'].has_img_apple)
 
     def test_char(self):
         self.assertEqual('☝', self.emoji.char)
