@@ -28,5 +28,3 @@ def replace_colons(text: str, strip: bool=False) -> str:
         return res
 
     return sub(r'\:[a-zA-Z0-9-_+]+\:(\:skin-tone-[2-6]\:)?', emoji_repl, text)
-
-

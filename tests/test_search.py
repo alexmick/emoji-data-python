@@ -12,9 +12,9 @@ class SearchTestCase(unittest.TestCase):
         self.assertEqual('WAVING HAND SIGN', find_by_shortname('wave')[0].name)
 
     def test_find_by_shortname_unique(self):
-        self.assertEqual(23, len(find_by_shortname('heart')))
+        self.assertEqual(24, len(find_by_shortname('heart')))
         self.assertEqual(13, len(find_by_shortname('moon')))
 
     def test_find_by_name(self):
-        self.assertEqual('BLACK HEART SUIT', find_by_name('heart')[0].name)
+        self.assertEqual('COUPLE WITH HEART', find_by_name('heart')[0].name)
         self.assertEqual(3, len(find_by_name('earth')))
