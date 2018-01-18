@@ -1,6 +1,6 @@
 import unittest
 
-from emoji_data_python import replace_colons
+from emoji_data_python import replace_colons, get_emoji_regex
 
 
 class ReplaceColonsTestCase(unittest.TestCase):
@@ -40,3 +40,10 @@ Hello :wave: world :earth_africa: !
 How are you :question:""")
         )
 
+    def test_emoji_regex(self):
+        regex = get_emoji_regex()
+        self.assertRegex('😄', regex)
+        self.assertRegex('👪', regex)
+        self.assertNotRegex('hello :wave: l → ▶', regex)
+        res = regex.findall('💩💩 🏼 bla 👋🏼')
+        self.assertEqual(len(res), 5)  # Wave + skin tone counts as two
