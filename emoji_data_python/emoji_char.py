@@ -62,12 +62,12 @@ class EmojiChar:
         self.sort_order = data_blob.get('sort_order')  # type: int
         self.added_in = data_blob.get('added_in')  # type: str
 
-        self.has_img_apple = data_blob.get('has_img_apple') # type: bool
-        self.has_img_google = data_blob.get('has_img_google') # type: bool
-        self.has_img_twitter = data_blob.get('has_img_twitter') # type: bool
-        self.has_img_emojione = data_blob.get('has_img_emojione') # type: bool
-        self.has_img_facebook = data_blob.get('has_img_facebook') # type: bool
-        self.has_img_messenger = data_blob.get('has_img_messenger') # type: bool
+        self.has_img_apple = data_blob.get('has_img_apple')  # type: bool
+        self.has_img_google = data_blob.get('has_img_google')  # type: bool
+        self.has_img_twitter = data_blob.get('has_img_twitter')  # type: bool
+        self.has_img_emojione = data_blob.get('has_img_emojione')  # type: bool
+        self.has_img_facebook = data_blob.get('has_img_facebook')  # type: bool
+        self.has_img_messenger = data_blob.get('has_img_messenger')  # type: bool
 
         variations = data_blob.get('skin_variations', {})
         self.skin_variations = {
@@ -102,7 +102,7 @@ class EmojiChar:
     @property
     def chars(self) -> List[str]:
         """Lists all possible *rendered* codepoint variations for given emoji.
-        This is useful when tying to find this particular emoji in a string by looking for any variation.
+        This is useful when trying to find this particular emoji in a string by looking for any variation.
 
         >>> emoji.chars
         ['👋', '👋🏻', '👋🏼', '👋🏽', '👋🏾', '👋🏿']
