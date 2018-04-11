@@ -96,9 +96,7 @@ cd _build/html
 python -m SimpleHttpServer # Serve the docs on localhost:5000
 ```
 
-A pre-built hosted version is available here : https://pythonhosted.org/emoji-data-python
-
-Note : The badge above points the [readthedocs](http://emoji-data-python.readthedocs.io/en/latest/) version but their build system is in the process of being upgraded to python 3.6 so in the mean time it's broken.
+A pre-built hosted version is available here : http://emoji-data-python.readthedocs.io/en/latest/
 
 ## Testing
 
