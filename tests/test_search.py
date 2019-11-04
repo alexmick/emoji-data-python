@@ -12,8 +12,8 @@ class SearchTestCase(unittest.TestCase):
         self.assertEqual('WAVING HAND SIGN', find_by_shortname('wave')[0].name)
 
     def test_find_by_shortname_unique(self):
-        self.assertEqual(24, len(find_by_shortname('heart')))
-        self.assertEqual(13, len(find_by_shortname('moon')))
+        self.assertEqual(25, len(find_by_shortname('heart')))
+        self.assertEqual(14, len(find_by_shortname('moon')))
 
     def test_find_by_name(self):
         self.assertEqual('COUPLE WITH HEART', find_by_name('heart')[0].name)
