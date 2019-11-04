@@ -2,7 +2,7 @@ import json
 from os import path
 from typing import List, Dict
 
-from .conversion import unified_to_char
+from .conversion import unified_to_char, char_to_unified
 from .emoji_char import EmojiChar
 from .replacement import replace_colons, get_emoji_regex
 from .search import all_doublebyte, find_by_shortname, find_by_name
@@ -24,5 +24,5 @@ for emoji in emoji_data:
             emoji_short_names[short_name] = emoji
 
 
-__all__ = ['unified_to_char', 'EmojiChar', 'replace_colons', 'get_emoji_regex',
+__all__ = ['unified_to_char', 'char_to_unified', 'EmojiChar', 'replace_colons', 'get_emoji_regex',
            'all_doublebyte', 'find_by_shortname', 'find_by_name', 'emoji_data', 'emoji_short_names']

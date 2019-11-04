@@ -9,7 +9,7 @@ Module documentation
 --------------------
 
 .. automodule:: emoji_data_python
-    :members: unified_to_char, replace_colons, all_doublebyte, find_by_shortname, find_by_name, get_emoji_regex
+    :members: unified_to_char, char_to_unified, replace_colons, all_doublebyte, find_by_shortname, find_by_name, get_emoji_regex
 
     .. attribute:: emoji_data
 
