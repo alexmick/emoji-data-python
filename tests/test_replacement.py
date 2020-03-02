@@ -24,6 +24,10 @@ class ReplaceColonsTestCase(unittest.TestCase):
         self.assertEqual('👨‍👩‍👦', replace_colons(':man-woman-boy:'))
         self.assertEqual('👨‍🌾', replace_colons(':male-farmer:'))
 
+    def test_zwj_emoji_skin_tone(self):
+        """This tests zwj emojis that also have a skin tone"""
+        self.assertEqual('👨🏼‍🌾', replace_colons(':male-farmer::skin-tone-3:'))
+
     def test_unknown_code(self):
         self.assertEqual('💩💩 :poo:🏼', replace_colons(':hankey::poop: :poo::skin-tone-3:'))
 
