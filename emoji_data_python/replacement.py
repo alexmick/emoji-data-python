@@ -1,5 +1,4 @@
 import re
-from typing import cast
 
 
 def replace_colons(text: str, strip: bool = False) -> str:
@@ -20,7 +19,7 @@ def replace_colons(text: str, strip: bool = False) -> str:
 
         if matchobj.lastindex == 2:
             skin_tone_match = matchobj.group(2)
-            skin_tone = cast(EmojiChar, emoji_short_names.get(skin_tone_match.strip(':')))
+            skin_tone: EmojiChar = emoji_short_names.get(skin_tone_match.strip(':'))
 
             if base_emoji is None:
                 return f'{emoji_match if strip is False else ""}{skin_tone.char}'
@@ -29,10 +28,10 @@ def replace_colons(text: str, strip: bool = False) -> str:
             if emoji_with_skin_tone is None:
                 return f'{base_emoji.char}{skin_tone.char}'
             return emoji_with_skin_tone.char
-        else:
-            if base_emoji is None:
-                return f'{emoji_match if strip is False else ""}'
-            return base_emoji.char
+
+        if base_emoji is None:
+            return f'{emoji_match if strip is False else ""}'
+        return base_emoji.char
 
     return re.sub(r'(\:[a-zA-Z0-9-_+]+\:)(\:skin-tone-[2-6]\:)?', emoji_repl, text)
 
