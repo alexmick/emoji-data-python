@@ -4,10 +4,10 @@ python:
   - '3.6'
 
 install:
-  - pip install python-coveralls nose coverage
+  - pip install pytest pytest-cov coveralls
 
 script:
-  - nosetests --with-coverage
+  - pytest --cov-config .coveragerc --cov=emoji_data_python tests/
 
 after_success:
   - coveralls
