@@ -1,0 +1,111 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Test, lint and build package
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [created]
+
+jobs:
+  install_dependencies:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Trick to make virtualenv portable, courtesy of https://aarongorka.com/blog/portable-virtualenv/
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m venv venv
+          #sed -i 's/VIRTUAL_ENV=".*"$/VIRTUAL_ENV="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}" )")" \&\& pwd)"/' venv/bin/activate
+          #sed -i '1s/.*/#!\/usr\/bin\/env python/' venv/bin/pip*
+          source venv/bin/activate
+          pip install -r dev.requirements.txt
+      - name: Upload dependencies artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: venv-${{ matrix.python-version }}
+          path: venv/
+
+  lint:
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: Retrieve dependencies
+        uses: actions/download-artifact@v1
+        with:
+          name: venv-3.6
+          path: venv
+      - name: Run lint tools
+        run: |
+          #chown -R $(whoami):$(whoami) venv
+          source venv/bin/activate
+          black --check emoji_data_python
+          pylint --load-plugins pylint_quotes emoji_data_python
+
+  test:
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Retrieve dependencies
+        uses: actions/download-artifact@v1
+        with:
+          name: venv-${{ matrix.python-version }}
+          path: venv
+      - name: Test with pytest
+        run: |
+          #chown -R $(whoami):$(whoami) venv/
+          source venv/bin/activate
+          pytest --cov-config .coveragerc --cov=emoji_data_python tests/ --cov-report term
+
+  deploy:
+    if: github.event_name == 'release'
+    needs:
+      - install_dependencies
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: Retrieve dependencies
+        uses: actions/download-artifact@v1
+        with:
+          name: venv-3.6
+          path: venv
+      - name: Build and publish
+        env:
+          TWINE_USERNAME: alexmick
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          #chown -R $(whoami):$(whoami) venv
+          source venv/bin/activate
+          sed -i "s|version=\"DEV\",|version=\"${GITHUB_REF/refs\/tags\//}\",|g" setup.py
+          python setup.py sdist bdist_wheel
+          twine upload dist/
