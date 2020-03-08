@@ -1,7 +1,7 @@
 import re
 
 
-def replace_colons(text: str, strip: bool=False) -> str:
+def replace_colons(text: str, strip: bool = False) -> str:
     """Parses a string with colon encoded emoji and renders found emoji.
     Unknown emoji are left as is unless `strip` is set to `True`
 
@@ -15,19 +15,19 @@ def replace_colons(text: str, strip: bool=False) -> str:
 
     def emoji_repl(matchobj) -> str:
         match = matchobj.group(0)
-        codes = match.split(':')
-        res = ''
+        codes = match.split(":")
+        res = ""
         for code in codes:
             if len(code) > 0:
                 try:
-                    res += emoji_short_names.get(code.replace('-', '_')).char
+                    res += emoji_short_names.get(code.replace("-", "_")).char
                 except AttributeError:
                     if not strip:
-                        res += f':{code}:'
+                        res += f":{code}:"
 
         return res
 
-    return re.sub(r'\:[a-zA-Z0-9-_+]+\:(\:skin-tone-[2-6]\:)?', emoji_repl, text)
+    return re.sub(r"\:[a-zA-Z0-9-_+]+\:(\:skin-tone-[2-6]\:)?", emoji_repl, text)
 
 
 def get_emoji_regex():
@@ -37,9 +37,10 @@ def get_emoji_regex():
     ['👋', '🏼', '🌍', '❗']
     """
     from emoji_data_python import emoji_data
+
     # Sort emojis by length to make sure mulit-character emojis are
     # matched first
 
     emojis = sorted([emoji.char for emoji in emoji_data], key=len, reverse=True)
-    pattern = u'(' + u'|'.join(re.escape(u) for u in emojis) + u')'
+    pattern = "(" + "|".join(re.escape(u) for u in emojis) + ")"
     return re.compile(pattern)

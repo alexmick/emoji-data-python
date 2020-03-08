@@ -26,8 +26,11 @@ def find_by_shortname(name: str) -> List[EmojiChar]:
     ]
     """
     from emoji_data_python import emoji_short_names
-    name = name.replace('-', '_')
-    res_list = [emoji_short_names[key] for key in emoji_short_names.keys() if name in key]
+
+    name = name.replace("-", "_")
+    res_list = [
+        emoji_short_names[key] for key in emoji_short_names.keys() if name in key
+    ]
     return list(set(res_list))  # Keep only unique values
 
 
@@ -37,11 +40,12 @@ def find_by_name(name: str) -> List[EmojiChar]:
     :param name: string to find in full names
     """
     from emoji_data_python import emoji_data
+
     return [emoji for emoji in emoji_data if emoji.name and name.upper() in emoji.name]
 
 
 def all_doublebyte() -> List[EmojiChar]:
     """Returns all emoji coded on two or more bytes"""
     from emoji_data_python import emoji_data
-    return [emoji for emoji in emoji_data if emoji.is_doublebyte]
 
+    return [emoji for emoji in emoji_data if emoji.is_doublebyte]
