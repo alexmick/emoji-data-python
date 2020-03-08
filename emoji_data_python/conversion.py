@@ -1,4 +1,3 @@
-
 def unified_to_char(code_point: str) -> str:
     """Renders a character from its hexadecimal codepoint
 
@@ -7,7 +6,7 @@ def unified_to_char(code_point: str) -> str:
     >>> emoji_data_python.unified_to_char('1F603')
     '😃'
     """
-    return ''.join([chr(int(code, 16)) for code in code_point.split('-')])
+    return "".join([chr(int(code, 16)) for code in code_point.split("-")])
 
 
 def char_to_unified(chars: str) -> str:
@@ -18,4 +17,4 @@ def char_to_unified(chars: str) -> str:
     >>> emoji_data_python.char_to_unified('🇿🇦')
     '1F1FF-1F1E6'
     """
-    return '-'.join([f"{ord(char):04x}".upper() for char in chars])
+    return "-".join([f"{ord(char):04x}".upper() for char in chars])
