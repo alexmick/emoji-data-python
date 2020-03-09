@@ -12,7 +12,8 @@ def replace_colons(text: str, strip: bool = False) -> str:
     >>> emoji_data_python.replace_colons('Hello world ! :wave::skin-tone-3: :earth_africa: :exclamation:')
     'Hello world ! 👋🏼 🌍 ❗'
     """
-    from emoji_data_python import emoji_short_names, EmojiChar  # pylint: disable=import-outside-toplevel
+    # pylint: disable=import-outside-toplevel
+    from emoji_data_python import emoji_short_names, EmojiChar
 
     def emoji_repl(matchobj) -> str:
         emoji_match = matchobj.group(1)
@@ -20,9 +21,7 @@ def replace_colons(text: str, strip: bool = False) -> str:
 
         if matchobj.lastindex == 2:
             skin_tone_match = matchobj.group(2)
-            skin_tone = cast(
-                EmojiChar, emoji_short_names.get(skin_tone_match.strip(":"))
-            )
+            skin_tone = cast(EmojiChar, emoji_short_names.get(skin_tone_match.strip(":")))
 
             if base_emoji is None:
                 return f'{emoji_match if strip is False else ""}{skin_tone.char}'

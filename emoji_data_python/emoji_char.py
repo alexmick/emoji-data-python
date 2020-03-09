@@ -91,10 +91,7 @@ class EmojiChar:
         return (
             [self.unified]
             + self.variations
-            + [
-                self.unified + "-" + variation
-                for variation in self.skin_variations.keys()
-            ]
+            + [self.unified + "-" + variation for variation in self.skin_variations.keys()]
         )
 
     @property

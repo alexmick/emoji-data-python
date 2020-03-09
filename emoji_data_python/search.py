@@ -28,9 +28,7 @@ def find_by_shortname(name: str) -> List[EmojiChar]:
     from emoji_data_python import emoji_short_names  # pylint: disable=import-outside-toplevel
 
     name = name.replace("-", "_")
-    res_list = [
-        emoji_short_names[key] for key in emoji_short_names.keys() if name in key
-    ]
+    res_list = [emoji_short_names[key] for key in emoji_short_names.keys() if name in key]
     return list(set(res_list))  # Keep only unique values
 
 
