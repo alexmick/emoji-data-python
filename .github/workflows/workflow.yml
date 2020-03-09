@@ -26,7 +26,7 @@ jobs:
         run: black --check emoji_data_python
       - name: Lint with pylint
         run: pylint --load-plugins pylint_quotes emoji_data_python
-      - name : mypy type checking
+      - name : mypy type checking (allowed to fail for now)
         run: mypy emoji_data_python || true
 
   test:
