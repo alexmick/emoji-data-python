@@ -25,7 +25,7 @@ def find_by_shortname(name: str) -> List[EmojiChar]:
         EmojiChar("FULL MOON WITH FACE"),
     ]
     """
-    from emoji_data_python import emoji_short_names
+    from emoji_data_python import emoji_short_names  # pylint: disable=import-outside-toplevel
 
     name = name.replace("-", "_")
     res_list = [
@@ -39,13 +39,13 @@ def find_by_name(name: str) -> List[EmojiChar]:
 
     :param name: string to find in full names
     """
-    from emoji_data_python import emoji_data
+    from emoji_data_python import emoji_data  # pylint: disable=import-outside-toplevel
 
     return [emoji for emoji in emoji_data if emoji.name and name.upper() in emoji.name]
 
 
 def all_doublebyte() -> List[EmojiChar]:
     """Returns all emoji coded on two or more bytes"""
-    from emoji_data_python import emoji_data
+    from emoji_data_python import emoji_data  # pylint: disable=import-outside-toplevel
 
     return [emoji for emoji in emoji_data if emoji.is_doublebyte]

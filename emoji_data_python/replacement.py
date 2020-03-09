@@ -12,7 +12,7 @@ def replace_colons(text: str, strip: bool = False) -> str:
     >>> emoji_data_python.replace_colons('Hello world ! :wave::skin-tone-3: :earth_africa: :exclamation:')
     'Hello world ! 👋🏼 🌍 ❗'
     """
-    from emoji_data_python import emoji_short_names, EmojiChar
+    from emoji_data_python import emoji_short_names, EmojiChar  # pylint: disable=import-outside-toplevel
 
     def emoji_repl(matchobj) -> str:
         emoji_match = matchobj.group(1)
@@ -45,7 +45,7 @@ def get_emoji_regex():
     >>> emoji_data_python.get_emoji_regex().findall('Hello world ! 👋🏼 🌍 ❗')
     ['👋', '🏼', '🌍', '❗']
     """
-    from emoji_data_python import emoji_data
+    from emoji_data_python import emoji_data  # pylint: disable=import-outside-toplevel
 
     # Sort emojis by length to make sure mulit-character emojis are
     # matched first

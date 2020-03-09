@@ -508,6 +508,6 @@ overgeneral-exceptions=BaseException,
 
 [OTHER]
 
-string-quote=double
+string-quote=double-avoid-escape
 triple-quote=double
 docstring-quote=double
