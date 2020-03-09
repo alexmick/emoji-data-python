@@ -12,6 +12,7 @@ class EmojiConversionTestCase(unittest.TestCase):
 
     def test_multiple_unified_to_char(self):
         self.assertEqual('👨‍🌾', unified_to_char('1F468-200D-1F33E'))
+        self.assertEqual('👩🏼‍🌾', unified_to_char('1F469-1F3FC-200D-1F33E'))
         self.assertEqual('🇳🇬', unified_to_char('1F1F3-1F1EC'))
         self.assertEqual('\U0001F1F3\U0001F1EC', unified_to_char('1F1F3-1F1EC'))
         self.assertEqual('4⃣', unified_to_char('0034-20E3'))
@@ -24,6 +25,7 @@ class EmojiConversionTestCase(unittest.TestCase):
         self.assertEqual('1F1E6', char_to_unified('\U0001F1E6'))
 
     def test_multiple_char_to_unified(self):
+        self.assertEqual('1F469-1F3FC-200D-1F33E', char_to_unified('👩🏼‍🌾'))
         self.assertEqual('1F468-200D-1F33E', char_to_unified('👨‍🌾'))
         self.assertEqual('1F1F3-1F1EC', char_to_unified('🇳🇬'))
         self.assertEqual('1F1F3-1F1EC', char_to_unified('\U0001F1F3\U0001F1EC'))
