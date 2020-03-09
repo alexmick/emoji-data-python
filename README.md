@@ -1,7 +1,6 @@
 # emoji_data_python - A python emoji toolkit
 
-[![Build Status](https://travis-ci.org/alexmick/emoji-data-python.svg?branch=master)](https://travis-ci.org/alexmick/emoji-data-python)
-[![Coverage Status](https://coveralls.io/repos/github/alexmick/emoji-data-python/badge.svg?branch=master)](https://coveralls.io/github/alexmick/emoji-data-python?branch=master)
+![CI pipeline](https://github.com/alexmick/emoji-data-python/workflows/CI%20pipeline/badge.svg)
 [![PyPI](https://img.shields.io/pypi/v/emoji-data-python.svg)](https://pypi.python.org/pypi/emoji-data-python)
 [![Documentation Status](https://readthedocs.org/projects/emoji-data-python/badge/?version=latest)](http://emoji-data-python.readthedocs.io/en/latest/?badge=latest)
 

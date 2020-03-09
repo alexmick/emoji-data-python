@@ -1,0 +1,75 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: CI pipeline
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: Install dev dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r dev.requirements.txt
+      - name: Lint with black
+        run: black --check emoji_data_python
+      - name: Lint with pylint
+        run: pylint --load-plugins pylint_quotes emoji_data_python
+      - name : mypy type checking (allowed to fail for now)
+        run: mypy emoji_data_python || true
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dev dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r dev.requirements.txt
+      - name: Test with pytest
+        run: |
+          pytest --cov-config .coveragerc --cov=emoji_data_python tests/ --cov-report term
+
+  deploy:
+    if: github.event_name == 'release'
+    needs:
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install wheel twine
+          pip install .
+      - name: Build and publish
+        env:
+          TWINE_USERNAME: alexmick
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          sed -i "s|version=\"DEV\",|version=\"${GITHUB_REF/refs\/tags\//}\",|g" setup.py
+          python setup.py sdist bdist_wheel
+          twine upload dist/*
