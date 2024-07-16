@@ -5,7 +5,7 @@ from emoji_data_python import all_doublebyte, find_by_shortname, find_by_name, e
 
 class SearchTestCase(unittest.TestCase):
     def test_all_emoji_length(self):
-        self.assertEqual(1810, len(emoji_data))
+        self.assertEqual(1903, len(emoji_data))
 
     def test_all_double_bytes(self):
         self.assertEqual('HASH KEY', all_doublebyte()[0].name)  # HASH_KEY is the first double byte char
@@ -15,7 +15,7 @@ class SearchTestCase(unittest.TestCase):
         self.assertEqual('WAVING HAND SIGN', find_by_shortname('wave')[0].name)
 
     def test_find_by_shortname_unique(self):
-        self.assertEqual(28, len(find_by_shortname('heart')))
+        self.assertEqual(34, len(find_by_shortname('heart')))
         self.assertEqual(14, len(find_by_shortname('moon')))
 
     def test_find_by_name(self):
