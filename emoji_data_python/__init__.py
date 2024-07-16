@@ -8,7 +8,7 @@ from .replacement import replace_colons, get_emoji_regex
 from .search import all_doublebyte, find_by_shortname, find_by_name
 
 # Read json data on module load to be cached
-with open(path.join(path.dirname(__file__), "data/emoji.json"), "r") as full_data:
+with open(path.join(path.dirname(__file__), "data/emoji.json"), "r", encoding="utf-8") as full_data:
     # Load and parse emoji data from json into EmojiChar objects
     emoji_data = [EmojiChar(data_blob) for data_blob in json.loads(full_data.read())]  # type: List[EmojiChar]
 

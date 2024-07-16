@@ -6,7 +6,7 @@ module_path = os.path.join(os.path.dirname(__file__), "emoji_data_python.py")
 
 setuptools.setup(
     name="emoji_data_python",
-    version="DEV",
+    version="0.0.0",
     url="https://github.com/alexmick/emoji-data-python/",
 
     author="Alexander Micklewright",
