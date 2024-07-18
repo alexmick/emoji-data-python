@@ -1,4 +1,5 @@
 import re
+from functools import cache
 from typing import cast
 
 
@@ -38,6 +39,7 @@ def replace_colons(text: str, strip: bool = False) -> str:
     return re.sub(r"(\:[a-zA-Z0-9-_+]+\:)(\:skin-tone-[2-6]\:)?", emoji_repl, text)
 
 
+@cache
 def get_emoji_regex():
     """Returns a regex to match any emoji
 
